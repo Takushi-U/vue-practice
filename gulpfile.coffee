@@ -100,6 +100,7 @@ gulp.task 'server', ->
     port:      9001
     server:
       baseDir: './public'
+      proxy: "localhost:8000"
 
 gulp.task 'watch', ->
   gulp.watch config.templates.watch, ['templates']
