@@ -16,6 +16,7 @@ streamify    = require 'gulp-streamify'
 stylus       = require 'gulp-stylus'
 uglify       = require 'gulp-uglify'
 watchify     = require 'watchify'
+MockServer = require('easymock').MockServer
 
 production   = process.env.NODE_ENV is 'production'
 
@@ -95,12 +96,20 @@ gulp.task 'assets', ->
     .src config.assets.source
     .pipe gulp.dest config.assets.destination
 
-gulp.task 'server', ->
+gulp.task 'easymock', ()->
+  options =
+    keepalive: true
+    port: 4444
+    path: './api'
+  server = new MockServer(options)
+  server.start()
+
+gulp.task 'server', ['easymock'], ->
   browserSync
     port:      9001
     server:
       baseDir: './public'
-      proxy: "localhost:8000"
+      proxy: "localhost:4444/"
 
 gulp.task 'watch', ->
   gulp.watch config.templates.watch, ['templates']
