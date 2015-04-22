@@ -4,22 +4,26 @@ html
     title Gulp template
     link(rel='stylesheet', href='css/style.css')
   body
-    h1 Hello world!
     #app
-      //- //- v-show 条件がfalseになるとdisplay: none;がセットされる
-      //- div(v-show="selected")
-      //-   |selected=trueの時に表示
-      //- div(v-show="!selected")
-      //-   |selected=falseの時に表示
+      h1 Hello world!
+      p
+        input(type="text" v-model="msg")
+      p
+        input(type="checkbox" v-model="checked")
+      //- button(v-on="click: submit")
+      //-   |submit
+      p
+        select(v-model="selected")
+          option
+            |one
+          option
+            |two
+      {{checked ? "yes": "no"}}
+      {{msg}}
+      {{selected}}
+      
+      select(v-model="selected" options="myOptions")
 
-      //- <!-- v-class 条件がtrueとなると、それぞれred, boldのclassが適用される -->
-      //- span(v-class="red: hasError, bold: isImportant")
-      //-   |重要メッセージ
-      //- ul
-      //-   li(v-repeat="users")
-      //-     {{$index + 1}}: {{name}}: {{email}}
-      button(v-on="click: submit('hello', $event)")
-        |submit
     script(src='js/bundle.js')
 
 
