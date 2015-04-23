@@ -1,28 +1,21 @@
 doctype html
 html
   head
-    title Gulp template
+    meta(charset="utf-8")
+    title Vue_tuto_app
     link(rel='stylesheet', href='css/style.css')
   body
     #app
-      h1 Hello world!
-      p
-        input(type="text" v-model="msg")
-      p
-        input(type="checkbox" v-model="checked")
-      //- button(v-on="click: submit")
-      //-   |submit
-      p
-        select(v-model="selected")
-          option
-            |one
-          option
-            |two
-      {{checked ? "yes": "no"}}
-      {{msg}}
-      {{selected}}
-      
-      select(v-model="selected" options="myOptions")
+      input(type="text" v-model="searchText")
+      hr
+      div(v-repeat="users | filterBy searchText in name" v-on="click: onClickUser(this)" v-class="Selected: this == selectedUser")
+        {{name}}
+      hr
+      div(v-show="selectedUser")
+        div
+          名前: {{selectedUser.name}}
+        div
+          コメント: {{selectedUser.comment}}
 
     script(src='js/bundle.js')
 

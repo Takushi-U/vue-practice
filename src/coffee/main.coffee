@@ -1,6 +1,27 @@
 $ = require 'jQuery'
 Vue = require 'vue'
 
+vm = new Vue
+  el: "#app"
+  data:
+    searchText: ""
+    users: []
+    selectedUser: null
+  created: ->
+    this.users.push
+      name: "Takuya Tejima"
+      comment: "次回の連載に乞うご期待。"
+    this.users.push
+      name: "Daisuke Shimizu"
+      comment: "こんにちは。"
+    this.users.push
+      name: "Ryota Agata"
+      comment: "Vue.js嫌い。"
+  methods:
+    onClickUser: (user)->
+      this.selectedUser = user
+
+
 # vm = new Vue
 #   el: "#app"
 #   data: {
@@ -83,20 +104,22 @@ Vue = require 'vue'
 #     console.log this.$el #-> DOMが帰って来る。
 
 # **ディレクティブ**
-vm = new Vue
-  el: "#app"
-  data:
-    # msg: "hi!"
-    # chechked: true
-    # picked: "one"
-    # selected: "two"
-    selected: "a"
-    myOptions: 
-      [{  
-          text: "A"
-          value: "a"
-      }
-      {
-          text: "B"
-          value: "b"
-      }]
+# vm = new Vue
+#   el: "#app"
+#   data:
+#     msg: "hi!"
+#     chechked: true
+#     picked: "one"
+#     selected: "two"
+#     selected: "a"
+#     myOptions: 
+#       [{  
+#           text: "A"
+#           value: "a"
+#       }
+#       {
+#           text: "B"
+#           value: "b"
+#       }]
+
+
